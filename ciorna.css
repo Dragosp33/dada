@@ -1,0 +1,27 @@
+* {
+	box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    background: rgb(206, 212, 212);
+    color: #1c1e21;
+    
+  }
+  .container {
+      padding: 50px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction : row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+  }
+  .container h1 { flex-grow: 0;}
+  #parent1 {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+  }
+  #parent1 button { margin: 6px;}
+small { color: red; position: absolute;}
