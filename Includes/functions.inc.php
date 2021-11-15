@@ -151,7 +151,7 @@ function CreateUser($conn, $user, $email, $password1) {
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
             }*/
-        header("Location: ../signup.php?error=none&mail=".$email); 
+        header("Location: ../signup.php?error=none&mail=$email"); 
 }
 /*
 function SendMail($conn, $email, $password){
