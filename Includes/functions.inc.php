@@ -113,13 +113,15 @@ function CreateUser($conn, $user, $email, $password1) {
     
 
     // Sending Mail 
-    /*
-    $mail = new PHPMailer();
+    
+    $mail = new PHPMailer;
+    $mail->isSMTP();
     $mail->SMTPSecure = 'ssl';
     $mail->Host = 'smtp.gmail.com';
     $mail->Port = 465;
     $mail->Username = 'dragosp0201@gmail.com';
     $mail->Password = 'Z1poliCT';
+    $mail->SMTPAuth = true;
     $mail->setFrom('dragosp0201@gmail.com', 'Gmail');
     $mail->addAddress($email, 'Tim');
     $mail->Subject = 'Test Email via Mailtrap SMTP using PHPMailer';
@@ -144,8 +146,8 @@ function CreateUser($conn, $user, $email, $password1) {
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			$headers .= "From: webmaster@sourcecodester.com". "\r\n" .
 						"CC: ndevierte@gmail.com";*/
-   /*$mail->Body = $message;
-    $mail->send();*/
+    $mail->Body = $message;
+    $mail->send();
           /*  if(){
                 echo 'Message has been sent';
             }else{
