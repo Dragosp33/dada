@@ -161,7 +161,7 @@ function CreateUser($conn, $user, $email, $password1) {
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			$headers .= "From: webmaster@sourcecodester.com". "\r\n" .
 						"CC: ndevierte@gmail.com";
-            $mail->Body = $mailContent;
+            $mail->Body = $message;
             if($mail->send()){
                 echo 'Message has been sent';
             }else{

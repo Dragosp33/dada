@@ -43,7 +43,7 @@ if(isset($_POST["submit"])) {
   header("Location: ../signup.php?error=none&mail=".$email);
 
 }
-else { header("Location: ../signup.php"); exit();
+else { header("Location: ../signup.php"); exit(); //echo "CE ARE VERE";
    
 }
 ?>
