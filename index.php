@@ -29,6 +29,8 @@
         unde sunt stocate atat idul localului rezervat, cat si idul utilizatorului care a facut rezervarea; </p>
         <p> Putem astfel sa deducem cine a rezervat un local anume si in ce data, lucru foarte util pentru pagina 
         <strong style="color: green">Profile</strong> a utilizatorului </p>
+        <p> Momentan doar paginile de signup si login sunt complet functionale, deci pot fi testate. </p>
+        <p> Intra pe pagina principala a siteului <a href="index1.php" target="blank"> aici </a>
         
         </div>
     <div>
