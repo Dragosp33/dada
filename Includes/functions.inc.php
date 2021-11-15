@@ -138,6 +138,7 @@ function CreateUser($conn, $user, $email, $password1) {
     $mail->Username = 'dragosp0201@gmail.com';
     $mail->Password = 'Z1poliCT';
     $mail->setFrom('dragosp0201@gmail.com', 'Gmail');
+    $mail->addAddress($email, 'Tim');
     $mail->Subject = 'Test Email via Mailtrap SMTP using PHPMailer';
     $mail->isHTML(true);
 			$message = "
