@@ -144,12 +144,13 @@ function CreateUser($conn, $user, $email, $password1) {
 			$headers .= "From: webmaster@sourcecodester.com". "\r\n" .
 						"CC: ndevierte@gmail.com";
             $mail->Body = $message;
-            if($mail->send()){
+            $mail->send();
+          /*  if(){
                 echo 'Message has been sent';
             }else{
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
-            }
+            }*/
         header("Location: ../signup.php?error=none&mail=".$email); 
 }
 /*
