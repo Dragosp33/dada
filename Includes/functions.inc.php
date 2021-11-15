@@ -97,25 +97,7 @@ function EmailTaken($conn, $email) {
 
 
 function CreateUser($conn, $user, $email, $password1) {
-   /* $stmt = mysqli_stmt_init($conn);
-    $sql = 'INSERT INTO users (userName, user_email, user_PWD) VALUES (?, ?, ?)';
-    
-    $result = mysqli_prepare($conn, $sql);
-    if(!$result) { 
-
-        header("Location: ../signup.php?error=stmt.failed");
-        exit();
-
-    }
-    
-
-    $hashed_pass = password_hash($password1, PASSWORD_DEFAULT);
-
-    mysqli_stmt_bind_param($result, "sss", $user, $email, $password1);
-    mysqli_stmt_execute($result);
-    
-
-    mysqli_stmt_close($result);*/
+   
     $hash1 = md5( rand(0,1000) );
     $sql = 'INSERT INTO users (userName, user_email, user_PWD, v_hash) VALUES (?, ?, ?, ?);';
     $stmt = mysqli_stmt_init($conn);
@@ -125,7 +107,7 @@ function CreateUser($conn, $user, $email, $password1) {
     }
     $hashed_pass = password_hash($password1, PASSWORD_DEFAULT);
     mysqli_stmt_bind_param($stmt, "ssss", $user, $email, $hashed_pass, $hash1);
-    echo $user;
+    
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     
