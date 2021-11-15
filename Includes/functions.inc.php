@@ -1,6 +1,6 @@
 <?php
-
-
+require 'vendor/autoload.php';
+use PHPmailer\PHPmailer\PHPmailer;
 
 function emptyInput($user, $email, $password1, $password2){
 
@@ -131,8 +131,15 @@ function CreateUser($conn, $user, $email, $password1) {
     
 
     // Sending Mail 
-    $to = $email;
-			$subject = "Sign Up Verification Code";
+    $mail = new PHPMailer();
+    $mail->SMTPSecure = 'ssl';
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 465;
+    $mail->Username = 'dragosp0201@gmail.com';
+    $mail->Password = 'Z1poliCT';
+    $mail->setFrom('dragosp0201@gmail.com', 'Gmail');
+    $mail->Subject = 'Test Email via Mailtrap SMTP using PHPMailer';
+    $mail->isHTML(true);
 			$message = "
 				<html>
 				<head>
@@ -153,8 +160,14 @@ function CreateUser($conn, $user, $email, $password1) {
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			$headers .= "From: webmaster@sourcecodester.com". "\r\n" .
 						"CC: ndevierte@gmail.com";
- 
-		mail($to,$subject,$message,$headers);
+            $mail->Body = $mailContent;
+            if($mail->send()){
+                echo 'Message has been sent';
+            }else{
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            }
+		//mail($to,$subject,$message,$headers);
 //ending of sending mail;
 
         header("Location: ../signup.php?error=none&mail=$email");
