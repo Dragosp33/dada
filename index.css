@@ -1,0 +1,31 @@
+*{ box-sizing: border-box;
+    }
+
+
+body {
+    display: flex;
+    flex-direction: column;
+  /*  background: rgb(206, 212, 212);
+    background-color: #f2bc94;*/
+    color: #1c1e21;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    
+  }
+.flex-index {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.flex-index item { 
+    border: 1px solid blue;
+    flex-basis: 300px;
+}
+
+.flex-container {
+    flex-basis: 400px;
+}
