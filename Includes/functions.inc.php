@@ -113,6 +113,7 @@ function CreateUser($conn, $user, $email, $password1) {
     
 
     // Sending Mail 
+    /*
     $mail = new PHPMailer();
     $mail->SMTPSecure = 'ssl';
     $mail->Host = 'smtp.gmail.com';
@@ -143,8 +144,8 @@ function CreateUser($conn, $user, $email, $password1) {
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			$headers .= "From: webmaster@sourcecodester.com". "\r\n" .
 						"CC: ndevierte@gmail.com";*/
-    $mail->Body = $message;
-    $mail->send();
+   /*$mail->Body = $message;
+    $mail->send();*/
           /*  if(){
                 echo 'Message has been sent';
             }else{
