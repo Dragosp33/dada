@@ -40,8 +40,7 @@ if(isset($_POST["submit"])) {
     exit();
   }
   CreateUser($conn, $user, $email, $password1);
-  header("Location: ../signup.php?error=none&mail=$email"); 
-  exit();
+ 
 }
 else { header("Location: ../signup.php"); exit(); //echo "CE ARE VERE";
    

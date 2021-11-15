@@ -139,19 +139,19 @@ function CreateUser($conn, $user, $email, $password1) {
 				</html>
 				";
 			//dont forget to include content-type on header if your sending html
-			$headers = "MIME-Version: 1.0" . "\r\n";
+		/*	$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			$headers .= "From: webmaster@sourcecodester.com". "\r\n" .
-						"CC: ndevierte@gmail.com";
-            $mail->Body = $message;
-            $mail->send();
+						"CC: ndevierte@gmail.com";*/
+    $mail->Body = $message;
+    $mail->send();
           /*  if(){
                 echo 'Message has been sent';
             }else{
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
             }*/
-        header("Location: ../signup.php?error=none&mail=$email"); 
+    header("Location: ../signup.php?error=none&mail=$email"); 
 }
 /*
 function SendMail($conn, $email, $password){
