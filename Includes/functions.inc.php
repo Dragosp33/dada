@@ -1,6 +1,8 @@
 <?php
-require 'vendor/autoload.php';
-use PHPmailer\PHPmailer\PHPmailer;
+require '../vendor/autoload.php';
+require_once '../config.php';
+
+//use PHPmailer\PHPmailer\PHPmailer;
 
 function emptyInput($user, $email, $password1, $password2){
 
@@ -110,9 +112,43 @@ function CreateUser($conn, $user, $email, $password1) {
     
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    
+    $message = "
+				
+				<head>
+				<title>Verification Code</title>
+				</head>
+				<body>
+				<h2>Thank you for Registering.</h2>
+				<p>Your Account:</p>
+				<p>Email: ".$email."</p>
+				<p>Password: ".$password1."</p>
+				<p>Please click the link below to activate your account.</p>
+				<h4><a href='http://localhost/activate.php?uid=$user&hash=$hash1'>Activate My Account</h4>
+				</body>";
 
-    // Sending Mail 
+
+        $mail = new \SendGrid\Mail\Mail(); 
+        $mail->setFrom("dragos.polifronie@s.unibuc.ro", "Polifronie Dragos");
+        $mail->setSubject("Sending with SendGrid is Fun");
+        $mail->addTo($email, $user);
+        $mail->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $mail->addContent(
+            "text/html", $message);
+        
+        $sendgrid = new \SendGrid(SENDGRID_API_KEY);
+        try {
+            $response = $sendgrid->send($mail);
+            
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
+
+    
+/*
+    // Sending Mail with phpmailer
     
     $mail = new PHPMailer;
     $mail->isSMTP();
@@ -146,8 +182,8 @@ function CreateUser($conn, $user, $email, $password1) {
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			$headers .= "From: webmaster@sourcecodester.com". "\r\n" .
 						"CC: ndevierte@gmail.com";*/
-    $mail->Body = $message;
-    $mail->send();
+  //  $mail->Body = $message;
+  //  $mail->send();
           /*  if(){
                 echo 'Message has been sent';
             }else{
