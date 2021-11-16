@@ -1,6 +1,6 @@
 <?php
 include_once 'Includes/header.php';
-
+echo SENDGRID_API_KEY;
 
 ?>
 
