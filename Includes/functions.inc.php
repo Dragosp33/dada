@@ -112,7 +112,7 @@ function CreateUser($conn, $user, $email, $password1) {
     
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
- /*   $message = "
+    $message = "
 				
 				<head>
 				<title>Verification Code</title>
@@ -144,7 +144,7 @@ function CreateUser($conn, $user, $email, $password1) {
             print $response->body() . "\n";
         } catch (Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
-        }*/
+        }
 
     
 /*
@@ -190,7 +190,7 @@ function CreateUser($conn, $user, $email, $password1) {
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
             }*/
-    header("Location: ../signup.php?error=none&mail=$email"); 
+   // header("Location: ../signup.php?error=none&mail=$email"); 
 }
 /*
 function SendMail($conn, $email, $password){
