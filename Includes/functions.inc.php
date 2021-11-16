@@ -126,7 +126,7 @@ function CreateUser($conn, $user, $email, $password1) {
 				<h4><a href='http://localhost/activate.php?uid=$user&hash=$hash1'>Activate My Account</h4>
 				</body>";
 
-        echo SENDGRID_API_KEY;
+      //  echo SENDGRID_API_KEY;
         /*
         $mail = new \SendGrid\Mail\Mail(); 
         $mail->setFrom("dragos.polifronie@s.unibuc.ro", "Polifronie Dragos");
