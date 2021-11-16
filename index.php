@@ -1,6 +1,4 @@
-<?php
-$myvar = getenv('SENDGRID_API_KEY');
-echo $myvar; ?>
+
 
 <html lang="en">
 <head>

@@ -40,7 +40,7 @@ if(isset($_POST["submit"])) {
     exit();
   }
   CreateUser($conn, $user, $email, $password1);
-  echo SENDGRID_API_KEY;
+  
 }
 else { header("Location: ../signup.php"); exit(); //echo "CE ARE VERE";
    

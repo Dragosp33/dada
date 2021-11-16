@@ -135,8 +135,9 @@ function CreateUser($conn, $user, $email, $password1) {
         $mail->addContent("text/plain", "and easy to do anywhere, even with PHP");
         $mail->addContent(
             "text/html", $message);
-        
-        $sendgrid = new \SendGrid(SENDGRID_API_KEY);
+        $myvar = getenv('SENDGRID_API_KEY');
+         
+        $sendgrid = new \SendGrid($myvar);
         try {
             $response = $sendgrid->send($mail);
             
