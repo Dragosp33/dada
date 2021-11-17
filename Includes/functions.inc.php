@@ -123,7 +123,7 @@ function CreateUser($conn, $user, $email, $password1) {
 				<p>Email: ".$email."</p>
 				<p>Password: ".$password1."</p>
 				<p>Please click the link below to activate your account.</p>
-				<h4><a href='http://localhost/activate.php?uid=$user&hash=$hash1'>Activate My Account</h4>
+				<h4><a href='https://evenimentt.herokuapp.com/activate.php?uid=$user&hash=$hash1'>Activate My Account</h4>
 				</body>";
 
         //echo SENDGRID_API_KEY;
