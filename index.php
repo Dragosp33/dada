@@ -34,7 +34,7 @@
         
         </div>
     <div>
-    <img src="uploads/database_scheme.png" alt="" style="width:500px; height: 400px;"/>
+    <img src="uploads/database_scheme.png" alt="????" style="width:500px; height: 400px;"/>
     </div></div>
 </body>
 </html>
