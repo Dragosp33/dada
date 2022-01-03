@@ -65,6 +65,10 @@ onchange="checkForm()">
             <p> Your account has not been verified! </p>
             <p>Please check your email inbox to verify your account;</p>";
         }
+        if($_GET["error"]=="emptyinputs"){
+            echo "
+            <p> You can't login without filling the inputs! </p>";
+        }
     }
 
 ?>
@@ -102,10 +106,10 @@ onchange="checkForm()">
     function validatecaptcha() {
     var response = grecaptcha.getResponse();
     if (response.length === 0) {
-        alert("not validated");
+        alert("please, validate captcha");
         return false;
     } else {
-        alert("validated");
+        //alert("validated");
         return true;
     }
 }
