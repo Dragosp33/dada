@@ -7,6 +7,7 @@ include_once 'Includes/header.php';
 <html>
 <head>
 <script src="script.js"></script>
+<script src='https://www.google.com/recaptcha/api.js' async defer ></script>
 <link rel="stylesheet" href="login-style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -23,7 +24,7 @@ include_once 'Includes/header.php';
 <h1> Log in</h1>
 <br>
 <p> To enjoy our site at full</p>
-<form action="Includes/login.inc.php" method="POST" onsubmit="return checkForm()">
+<form action="Includes/login.inc.php" method="POST" onsubmit="return checkForm()" id="loginform">
 
 
 <div>
@@ -48,7 +49,7 @@ onchange="checkForm()">
 </div>
 
 
-
+<div class="g-recaptcha" data-sitekey="6Lfn8ekdAAAAAO5GJGjOUH5A3dD5JOr93GKhMMM-"></div>
 
 <button type="submit" name="submit" class="submit btn">Log in</button>
 <br>
@@ -71,6 +72,34 @@ onchange="checkForm()">
 </section>
 </div>
 </body>
+<script>
+    $(document).ready(function(){ 
+        $('#loginform').on('submit', function(event){
+            event.preventDefault();
+            $ajax({
+                url: "Includes/login.inc.php",
+                method: "POST",
+                data:$(this).serialize(),
+                datatype: "JSON",
+                beforeSend: function(){
+                        $('.submit.btn').attr('disabled', 'disabled');
+                }, 
+                success: function(data) {
+                    $('.submit.btn').attr('disabled', false);
+                    if(data.success){
+                        $('#loginform')[0].reset();
+                        grecaptcha.reset();
+                    }
+                }
+
+            })
+
+
+        })
+
+
+    })
+</script>
 </html>
 
 <?php
