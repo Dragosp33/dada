@@ -80,12 +80,12 @@ onchange="checkForm()">
                 url: "Includes/login.inc.php",
                 method: "POST",
                 data:$(this).serialize(),
-                datatype: "JSON",
+                dataType: "json",
                 beforeSend: function(){
-                        $('.submit.btn').attr('disabled', 'disabled');
+                        $('.submit btn').attr('disabled', 'disabled');
                 }, 
                 success: function(data) {
-                    $('.submit.btn').attr('disabled', false);
+                    $('.submit btn').attr('disabled', false);
                     if(data.success){
                         $('#loginform')[0].reset();
                         grecaptcha.reset();
