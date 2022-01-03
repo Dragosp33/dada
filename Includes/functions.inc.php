@@ -249,6 +249,7 @@ function UserExists($conn, $username, $email){
 
 
 function LoginUser($conn, $user, $password1) {
+    unset($_COOKIE[session_name()]);
     session_unset();
     session_destroy();
     session_regenerate_id(true);
