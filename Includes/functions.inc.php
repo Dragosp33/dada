@@ -251,6 +251,7 @@ function UserExists($conn, $username, $email){
 function LoginUser($conn, $user, $password1) {
     session_unset();
     session_destroy();
+    session_regenerate_id(true);
     $uidExists = UserExists($conn, $user, $user);
 
     if ($uidExists === false) {
@@ -278,6 +279,7 @@ function LoginUser($conn, $user, $password1) {
         
         
         session_start();
+        $session_id = session_id();
         $_SESSION["userID"] = $uidExists["userID"];
         $_SESSION["useruid"] = $uidExists["userName"];
         $_SESSION["mail"] = $uidExists["user_email"];
