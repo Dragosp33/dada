@@ -76,7 +76,7 @@ onchange="checkForm()">
     $(document).ready(function(){ 
         $('#loginform').on('submit', function(event){
             event.preventDefault();
-            $ajax({
+            $.ajax({
                 url: "Includes/login.inc.php",
                 method: "POST",
                 data:$(this).serialize(),
