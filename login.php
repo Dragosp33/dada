@@ -73,7 +73,7 @@ onchange="checkForm()">
 </div>
 </body>
 <script>
-    $(document).ready(function(){ 
+  /*  $(document).ready(function(){ 
         $('#loginform').on('submit', function(event){
             event.preventDefault();
             $.ajax({
@@ -98,7 +98,18 @@ onchange="checkForm()">
         })
 
 
-    })
+    })*/
+    function validateRecaptcha() {
+    var response = grecaptcha.getResponse();
+    if (response.length === 0) {
+        alert("not validated");
+        return false;
+    } else {
+        alert("validated");
+        return true;
+    }
+}
+
 </script>
 </html>
 
