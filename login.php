@@ -24,7 +24,7 @@ include_once 'Includes/header.php';
 <h1> Log in</h1>
 <br>
 <p> To enjoy our site at full</p>
-<form action="Includes/login.inc.php" method="POST" onsubmit="return checkForm()" id="loginform">
+<form action="Includes/login.inc.php" method="POST" id="loginform" onsubmit="return validatecaptcha()">
 
 
 <div>
