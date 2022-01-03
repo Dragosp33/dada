@@ -279,7 +279,7 @@ function LoginUser($conn, $user, $password1) {
         
         
         session_start();
-        $session_id = session_id();
+        $_SESSION['id'] = session_id();
         $_SESSION["userID"] = $uidExists["userID"];
         $_SESSION["useruid"] = $uidExists["userName"];
         $_SESSION["mail"] = $uidExists["user_email"];
