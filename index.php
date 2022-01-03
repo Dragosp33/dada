@@ -31,6 +31,19 @@
         <strong style="color: green">Profile</strong> a utilizatorului </p>
         <p> Momentan doar paginile de signup si login sunt complet functionale, deci pot fi testate. </p>
         <p> Intra pe pagina principala a siteului <a href="index1.php" target="blank"> aici </a>
+        <p style="weight: bold;"> update: </p>
+        <p> Am adaugat la pagina de login reCaptcha; Pentru prevenirea form spoofingului si cross script 
+            am utilizat cat mai multe metode de validare a inputului, astfel incat chiar daca in formular 
+            sunt introduse alte date, neasteptate, acestea nu vor ajunge niciodata pe server;  </p>
+            <p> de altfel, am distrus si creat o noua 
+            sesiune de fiecare data cand un utilizator se logheaza pe site (metoda foarte eficienta impotriva 
+            fixarii sesiunii, metoda in care unui utilizator ii este trimis 
+            siteul cu o sesiune deja fixata, iar atacatorul se va folosi de aceasta pentru 
+            a accesa informatiile din contul utilizatorului; se poate testa, pentru login am creat contul de test) </p>
+        <p style="color: green"> id: test1;  pass: testpass </p> <br>
+        <p> in ceea ce priveste sql injection am folosit mereu mysqli cu prepared_statement pentru a evita orice 
+            incercare de introducere in baza de date a unui user-input "malformat" </p>
+        <p> validarea de user-input se poate gasi in folderul <strong style="color: green"> Includes/functions.inc.php </strong> </p>
         
         </div>
     <div>
