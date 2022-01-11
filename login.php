@@ -14,6 +14,7 @@ add_view($conn, $visitor_ip, $page_id, $browser);
 
 <html>
 <head>
+<title> Login</title>
 <script src="script.js"></script>
 <script src='https://www.google.com/recaptcha/api.js' async defer ></script>
 <link rel="stylesheet" href="login-style.css">

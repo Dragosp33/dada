@@ -14,6 +14,7 @@ add_view($conn, $visitor_ip, $page_id, $browser);
 ?>
 <html>
 <head>
+<title> Upload Event</title>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script>
   $(document).ready(function () {

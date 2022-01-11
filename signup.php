@@ -16,6 +16,7 @@ require_once "Includes/connect.php";
 
 <html>
 <head>
+<title> Signup</title>
 <script src="script.js"></script>
 <link rel="stylesheet" href="login-style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
