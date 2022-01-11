@@ -11,5 +11,9 @@ Toate aceste informatii vor fi vizibile in pagina de profil (pagina posibila doa
 
 Ca elemente de securitate, avem anti form spoofing, xss, sql injection printr-o validare completa a datelor de intrare, o sesiune php sigura (care va impiedica orice 
 incercare de fixare a sesiunii) si folosirea "prepared statement"-urilor
+  
+  
+  UPDATE:
+  Acum este functionala pagina de upload, iar in cazul unui user cu rolul de admin am introdus o pagina unde acesta va vizualiza toti ceilalti useri si informatiile despre acestia, cat si statisticile siteului + log detaliat intr un fisier pdf trimis la download
 
 </html>
