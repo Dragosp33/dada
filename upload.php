@@ -208,14 +208,14 @@ if(isset($_POST['submit'])){
            
             if(in_array(strtolower($fileType), $allowTypes)){
               $targetFilePath2 = "uploads/" . md5(rand(0, 200)) . "." .$fileType;
-              $fake = 'htdocs/' . $targetFilePath2;
+              
               if(getimagesize($_FILES["files"]["tmp_name"][$key]) !== false){
                 $image = new Imagick($_FILES["files"]["tmp_name"][$key]);
                 $width = $image->getImageWidth();
                 $height = $image->getImageHeight();
                 if($width < 2000 && $height < 2000) {
                   $image->thumbnailImage($width, $height, TRUE);
-                  $image->writeImage($fake);
+                  $image->writeImage($targetFilePath2);
                   $image->destroy();
                   
                   
@@ -240,7 +240,7 @@ if(isset($_POST['submit'])){
                 mysqli_stmt_bind_param($stmt, "si", $param_name, $param_id);
                 
                 // Set parameters
-                $param_name = $fake;
+                $param_name = $targetFilePath2;
                 
                 $param_id = $local_id;
 
