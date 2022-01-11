@@ -47,7 +47,7 @@ include_once "Includes/header.php";
    
        . "WHERE loc_id = id AND res_user = ". $_SESSION["userID"];
         $result = mysqli_query($conn,$sql, MYSQLI_USE_RESULT);
-        var_dump($result);
+     
         while($row = $result->fetch_row()){
         echo  "
             <p class='info'> First reservation, " .$row[0]."! </p>

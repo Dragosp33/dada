@@ -262,7 +262,7 @@ if(isset($_POST['submit'])){
           
            // $insertValuesSQL = trim($insertValuesSQL, ','); 
             // Insert image file name into database 
-            $insert = $db2->query("INSERT INTO images (file_path, data_add, rss_id) VALUES $insertValuesSQL"); 
+            $insert = $db2->query("INSERT INTO images (filepath, data_add, rss_id) VALUES $insertValuesSQL"); 
            
             
             
