@@ -284,6 +284,7 @@ function LoginUser($conn, $user, $password1) {
         $_SESSION["userID"] = $uidExists["userID"];
         $_SESSION["useruid"] = $uidExists["userName"];
         $_SESSION["mail"] = $uidExists["user_email"];
+        if ($uidExists['role'] == 'admin') { $_SESSION['role'] = 'admin'; } else { $_SESSION['role'] = 'user'; }
         header("Location: ../index.php");
         exit();
     }

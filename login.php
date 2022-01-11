@@ -1,6 +1,14 @@
 <?php
 include_once 'Includes/header.php';
+require_once "Includes/views.php";
+require_once "Includes/connect.php";
 
+   
+$page_id = 3;
+$visitor_ip = $_SERVER['REMOTE_ADDR'];
+$browser = $_SERVER['HTTP_USER_AGENT'];
+
+add_view($conn, $visitor_ip, $page_id, $browser);
 
 ?>
 

@@ -1,5 +1,14 @@
 <?php
-include_once "Includes/header.php"; ?>
+include_once "Includes/header.php"; 
+require_once "Includes/connect.php";
+require_once "Includes/views.php";
+   
+    $page_id = 4;
+    $visitor_ip = $_SERVER['REMOTE_ADDR'];
+    $browser = $_SERVER['HTTP_USER_AGENT'];
+    
+    add_view($conn, $visitor_ip, $page_id, $browser);
+?>
 <hmtl>
 <head>
    
@@ -31,15 +40,17 @@ include_once "Includes/header.php"; ?>
 
 
 
-    <?php
+        <?php
     if (isset($_SESSION["useruid"])){
         echo "
         <p class='info'> Welcome, " .$_SESSION["useruid"]."! </p>
         <p class='info'> Your email address is: " .$_SESSION["mail"] . "</p>";
-       
+       if (isset($_SESSION["role"])) {
+           echo "<a href='admin.php'> Vezi pagina de admin </a>";
+       }
         
     }
-    else { header("Location: ../index.php"); exit(); }
+    else { header("Location: ../index1.php"); exit(); }
     
     ?>
     </div>
