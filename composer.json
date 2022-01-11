@@ -2,6 +2,8 @@
     "require": {
         "phpmailer/phpmailer": "^6.5",
         "vlucas/phpdotenv": "^5.4",
-        "sendgrid/sendgrid": "^7.10"
+        "sendgrid/sendgrid": "^7.10",
+        "ext-imagick": "^3.6",
+        "mpdf/mpdf": "^8.0"
     }
 }
