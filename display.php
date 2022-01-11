@@ -1,16 +1,16 @@
 <?php
-// Include the database configuration file
-include_once 'Includes/connect.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-// Get images from the database
-$query = $db2->query("SELECT * FROM images ORDER BY id DESC");
 
-if($query->num_rows > 0){
-    while($row = $query->fetch_assoc()){
-        $imageURL = 'uploads/'.$row["file_name"];
+
 ?>
-    <img src="<?php echo $imageURL; ?>" alt="" />
-<?php }
-}else{ ?>
-    <p>No image(s) found...</p>
-<?php } ?> 
+    
+<?php 
+$image = new Imagick('database_scheme.PNG');
+$fake = 'uploads/sall.PNG';
+$width = $image->getImageWidth();
+$height = $image->getImageHeight();
+  $image->thumbnailImage($width, $height, TRUE);
+  $image->writeImage($fake);
+  $image->destroy();
+ ?> 
