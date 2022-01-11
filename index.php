@@ -44,7 +44,13 @@
         <p> in ceea ce priveste sql injection am folosit mereu mysqli cu prepared_statement pentru a evita orice 
             incercare de introducere in baza de date a unui user-input "malformat" </p>
         <p> validarea de user-input se poate gasi in folderul <strong style="color: green"> Includes/functions.inc.php </strong> </p>
-        
+        <br/>
+        <p style="weight: bold; color: red;"> update2 (tema 4): </p><br>
+        <p> Am adaugat o pagina CRUD pentru utilizatorii cu rol de admin, puteti incerca din nou, cu credentialele de la ultimul update 
+</p> <br/>
+<p> de altfel, in pagina de admin puteti vizualiza statistica siteului si totodata sa descarcati un log ddetaliat cu ultimele 40 de accesari ale siteului </p> <br/>
+<p> <strong> pagina de upload </strong> este acum functionala prin <a href="upload.php"> Upload.php </a>, si rezultatul se poate vedea in <a href="index1.php">pagina principala</a>
+<p> Din nou, trebuie sa fiti logat pentru a putea accesa uploadul ! </p>
         </div>
     <div>
     <img src="database_scheme.PNG" alt="????" style="width:500px; height: 400px;"/>

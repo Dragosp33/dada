@@ -2,6 +2,10 @@
 require_once "Includes/connect.php";
 Include_once "Includes/header.php";
 
+if(!isset($_SESSION['useruid'])) {
+  header("Location: ../index1.php");
+  exit();
+}
 
    
 require_once "Includes/views.php";
@@ -11,6 +15,9 @@ $visitor_ip = $_SERVER['REMOTE_ADDR'];
 $browser = $_SERVER['HTTP_USER_AGENT'];
 
 add_view($conn, $visitor_ip, $page_id, $browser);
+
+
+
 ?>
 <html>
 <head>
