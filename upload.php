@@ -1,8 +1,19 @@
 <?php
 require_once "Includes/connect.php";
 Include_once "Includes/header.php";
-require_once "vendor/autoload.php";
+require_once __DIR__ . '/vendor/autoload.php';
+// this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
 
+$acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
+$s3 = new Aws\S3\S3Client([
+    'version'  => '2006-03-01',
+    'region'   => 'eu-west-3',
+    'credentials' => [
+        'key'    => $acceskey,
+        'secret' => $secret,
+    ]
+]);
+$bucket = getenv('S3_BUCKET');
 
 
 if(!isset($_SESSION['useruid'])) {
@@ -219,7 +230,7 @@ if(isset($_POST['submit'])){
            
             if(in_array(strtolower($fileType), $allowTypes)){
               $s3_key = md5(rand(0, 5000));
-              $s3_file = 'image/' . $fileType;
+             
               $targetFilePath2 = "uploads/" . $s3_key . "." .$fileType;
               
               if(getimagesize($_FILES["files"]["tmp_name"][$key]) !== false){
@@ -229,34 +240,22 @@ if(isset($_POST['submit'])){
                 if($width < 2000 && $height < 2000) {
                   $image->thumbnailImage($width, $height, TRUE);
                   $image->writeImage($targetFilePath2);
+
+                  $result = $s3->putObject([
+                    'Bucket' => $bucket,
+                    'Key' => $s3_key,
+                    'Body' => fopen($targetFilePath2, "r")
+                  ]);
+                  $result = $s3->getObject([
+                    'Bucket' => $bucket,
+                    'Key' => $s3_key
+                  ]);
+                  $url = $result['ObjectURL'];
                   $image->destroy();
 
-                  $s3 = new Aws\S3\S3Client([
-                    'region'  => 'eu-west-3',
-                    'version' => 'latest',
-                    'credentials' => [
-                        'key'    => "key",
-                        'secret' => "secret",
-                    ]
-                ]);		
-                try
-                    {
-                        $result = $s3->putObject([
-                        'Bucket' => 'heroevent',
-                        'Key'    => $s3_key,
-                        'SourceFile' => $targetFilePath2,
-                        'ACL'    => 'public-read',
-                        'ContentType' => $s3_file		
-                        ]);
-                    }
-                catch(S3Exception $e)
-                    {
-                        echo $e;
-                    }
-                $uploaded_images = $result['ObjectURL'] . PHP_EOL;
-                echo $uploaded_images;  
                   
-                  $insertValuesSQL .= "('" .$uploaded_images. "', NOW(), '" .  $local_id . "'),";
+                  
+                  $insertValuesSQL .= "('" .$url. "', NOW(), '" .  $local_id . "'),";
                 }else{ 
                     $errorUpload .= $_FILES['files']['name'][$key].' | '; 
                     echo "eroare la width/height ".$errorUpload;}
