@@ -12,7 +12,7 @@ $s3 = new Aws\S3\S3Client([
     ]
 ]);
 $bucket = getenv('S3_BUCKET');
-/*
+
 ?>
 
 
@@ -25,8 +25,15 @@ $bucket = getenv('S3_BUCKET');
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES['userfile']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['userfile']['tmp_name'])) {
     // FIXME: you should add more of your own validation here, e.g. using ext/fileinfo
     try {
+        $result = $s3->putObject([
+            'Bucket' => $bucket,
+            'Key' => 'poza',
+            'ACL' => 'public-read',
+            'SourceFile' => $_FILES['userfile']['tmp_name'],
+            'ContentType' => 'image/png'
+        ]);
         // FIXME: you should not use 'name' for the upload, since that's the original filename from the user's computer - generate a random filename that you then store in your database, or similar
-        $upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
+        //$upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
 ?>
         <p>Upload <a href="<?=htmlspecialchars($upload->get('ObjectURL'))?>">successful</a> :)</p>
 <?php } catch(Exception $e) { ?>
@@ -38,14 +45,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES
             
         </form>
     </body>
-</html>*/
+</html>
+<?php
+/*
 $result = $s3->putObject([
     'Bucket' => $bucket,
-    'Key' => 'cheie',
-    'Body' => 'this is the body!'
+    'Key' => 'poza',
+    'Body' => 'this is the body!',
+    'SourceFile' => $_FILES['userfile']['tmp_name'],
+    'ContentType' => 'image/png'
 ]);
 $result = $s3->getObject([
     'Bucket' => $bucket,
-    'Key' => 'cheie'
+    'Key' => 'poza'
 ]);
-echo $result['Body'];
+echo $result['KE'];*/
+?>
