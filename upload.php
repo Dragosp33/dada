@@ -292,7 +292,7 @@ if(isset($_POST['submit'])){
          
         if(!empty($insertValuesSQL)){ 
           $insertValuesSQL = trim($insertValuesSQL, ",");
-          echo $insertValuesSQL;
+          
           
            
             // Insert image file name into database 
@@ -304,7 +304,7 @@ if(isset($_POST['submit'])){
                 $statusMsg = "Files are uploaded successfully.".$errorMsg; 
             }else{ 
                 $statusMsg = "Sorry, there was an error uploading your file.";  
-                echo $statusMsg;
+                
             }
 
         }else{ 

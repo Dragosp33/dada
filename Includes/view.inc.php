@@ -24,7 +24,7 @@ function Show($conn, $search=null) {
             
                 while($row = mysqli_fetch_array($result_data)){
                         echo '<div class="container">
-                        <div class="title"> ' . '<a href="index1.php">' . $row['title'] . '</a>
+                        <div class="title"> ' . '<a href="view_local.php?id= ' . $row['id'] . '>' . $row['title'] . '</a>
                         </div>
                         <div class="img" style="background-image: url(' . $row['thumbnail']. ');">
                         </div>
