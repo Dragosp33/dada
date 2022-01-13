@@ -273,7 +273,7 @@ if(isset($_POST['submit'])){
                 mysqli_stmt_bind_param($stmt, "si", $param_name, $param_id);
                 
                 // Set parameters
-                $param_name = $targetFilePath2;
+                $param_name = $url2;
                 
                 $param_id = $local_id;
 

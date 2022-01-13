@@ -1,3 +1,8 @@
+<html>
+    <head>
+    <title>local </title>
+    <link rel="stylesheet" href="upload.css"></head>
+    </html>
 <?php
 require_once "Includes/connect.php";
 Include_once "Includes/header.php";
