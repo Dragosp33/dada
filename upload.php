@@ -252,7 +252,7 @@ if(isset($_POST['submit'])){
 
                   
                   
-                  $insertValuesSQL .= "('" .$url2. "', NOW(), '" .  $local_id . "'),";
+                  $insertValuesSQL .= "('" . $url2. "', NOW(), '" .  $local_id . "'),";
                 }else{ 
                     $errorUpload .= $_FILES['files']['name'][$key].' | '; 
                     echo "eroare la width/height ".$errorUpload;}
@@ -292,18 +292,20 @@ if(isset($_POST['submit'])){
          
         if(!empty($insertValuesSQL)){ 
           $insertValuesSQL = trim($insertValuesSQL, ",");
+          echo $insertValuesSQL;
           
            // $insertValuesSQL = trim($insertValuesSQL, ','); 
             // Insert image file name into database 
-            $insert = $db2->query("INSERT INTO images (filepath, data_add, rss_id) VALUES $insertValuesSQL"); 
+           // $insert = $db2->query("INSERT INTO images (filepath, data_add, rss_id) VALUES $insertValuesSQL"); 
            
             
             
-            if($insert){ 
+           /* if($insert){ 
                 $statusMsg = "Files are uploaded successfully.".$errorMsg; 
             }else{ 
                 $statusMsg = "Sorry, there was an error uploading your file.";  
-            }
+                echo $statusMsg;
+            }*/
 
         }else{ 
             $statusMsg = "Upload failed! ".$errorMsg; 
@@ -313,7 +315,7 @@ if(isset($_POST['submit'])){
     } 
     
     
-    $_POST = array();
-} }
+    
+} $_POST = array();}
 echo $statusMsg;
 ?>
