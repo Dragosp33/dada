@@ -1,16 +1,20 @@
 <?php
 require 'vendor/autoload.php';
 // this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
-/*$s3 = new Aws\S3\S3Client([
+
+$acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
+$s3 = new Aws\S3\S3Client([
     'version'  => '2012-10-17',
     'region'   => 'eu-west-3',
-]);*/
+    'credentials' => [
+        'key'    => $acceskey,
+        'secret' => $secret,
+    ]
+]);
 $bucket = getenv('S3_BUCKET');
-$acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
-echo $bucket . " " . $acceskey . " " . $secret;
-echo "salut sall";
+?>
 
-/*?>
+
 
 <html>
     <head><meta charset="UTF-8"></head>
@@ -33,5 +37,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES
             <button type="submit" name="submit">submit</button>
         </form>
     </body>
-</html>*/
-?>
+</html>
