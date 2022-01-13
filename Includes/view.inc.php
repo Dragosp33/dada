@@ -53,7 +53,7 @@ function Show($conn, $search=null) {
         $description=$row[3];*/
       
         echo '<div class="container">
-                        <div class="title"> ' . $row[1] . '
+                        <div class="title">  <a href="view_local.php?id= ' . $row[0] . '>' . $row['title'] . '</a> 
                         </div>
                         <div class="img" style="background-image: url(' . $row[6]. ');">
                         </div>
