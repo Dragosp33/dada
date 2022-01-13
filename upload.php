@@ -3,7 +3,7 @@ require_once "Includes/connect.php";
 Include_once "Includes/header.php";
 require_once __DIR__ . '/vendor/autoload.php';
 // this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
-$url = 'heroevent.s3.eu-west-3.amazonaws.com/';
+$url = 'https://heroevent.s3.eu-west-3.amazonaws.com/';
 $acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
 $s3 = new Aws\S3\S3Client([
     'version'  => '2006-03-01',
@@ -211,11 +211,13 @@ if(isset($_POST['submit'])){
         
         }else echo "No result found";
         $fake = '';
+        $url3 = ''; $count = 0;
         foreach($_FILES['files']['name'] as $key=>$val){ 
+          
           if(!empty($removed_files) && in_array($_FILES['files']['name'][$key], $removed_files)) {
             continue;
           }
-           
+            
             // File upload path 
            
             $fileName = basename($_FILES['files']['name'][$key]); 
@@ -231,6 +233,7 @@ if(isset($_POST['submit'])){
             if(in_array(strtolower($fileType), $allowTypes)){
               $s3_key = md5(rand(0, 5000));
              
+
               $targetFilePath2 = "uploads/" . $s3_key . "." .$fileType;
               
               if(getimagesize($_FILES["files"]["tmp_name"][$key]) !== false){
@@ -249,7 +252,10 @@ if(isset($_POST['submit'])){
                   
                   $url2 = $url . $s3_key;
                   $image->destroy();
-
+                  $count = $count+1;
+                  if($count == 1){
+                    $url3 = $url2;
+                  }
                   
                   
                   $insertValuesSQL .= "('" . $url2. "', NOW(), '" .  $local_id . "'),";
@@ -273,7 +279,7 @@ if(isset($_POST['submit'])){
                 mysqli_stmt_bind_param($stmt, "si", $param_name, $param_id);
                 
                 // Set parameters
-                $param_name = $url2;
+                $param_name = $url3;
                 
                 $param_id = $local_id;
 
