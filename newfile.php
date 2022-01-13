@@ -4,7 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
 $s3 = new Aws\S3\S3Client([
-    'version'  => '2012-10-17',
+    'version'  => 'latest',
     'region'   => 'eu-west-3',
     'credentials' => [
         'key'    => $acceskey,
