@@ -1,6 +1,9 @@
 <?php
 require_once "Includes/connect.php";
 Include_once "Includes/header.php";
+require_once "vendor/autoload.php";
+
+
 
 if(!isset($_SESSION['useruid'])) {
   header("Location: ../index1.php");
@@ -215,7 +218,9 @@ if(isset($_POST['submit'])){
            
            
             if(in_array(strtolower($fileType), $allowTypes)){
-              $targetFilePath2 = "uploads/" . md5(rand(0, 200)) . "." .$fileType;
+              $s3_key = md5(rand(0, 5000));
+              $s3_file = 'image/' . $fileType;
+              $targetFilePath2 = "uploads/" . $s3_key . "." .$fileType;
               
               if(getimagesize($_FILES["files"]["tmp_name"][$key]) !== false){
                 $image = new Imagick($_FILES["files"]["tmp_name"][$key]);
@@ -225,9 +230,33 @@ if(isset($_POST['submit'])){
                   $image->thumbnailImage($width, $height, TRUE);
                   $image->writeImage($targetFilePath2);
                   $image->destroy();
+
+                  $s3 = new Aws\S3\S3Client([
+                    'region'  => 'eu-west-3',
+                    'version' => 'latest',
+                    'credentials' => [
+                        'key'    => "AKIAXXJPZAYXBG6N7JTW",
+                        'secret' => "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",
+                    ]
+                ]);		
+                try
+                    {
+                        $result = $s3->putObject([
+                        'Bucket' => 'heroevent',
+                        'Key'    => $s3_key,
+                        'SourceFile' => $targetFilePath2,
+                        'ACL'    => 'public-read',
+                        'ContentType' => '$s3_file'		
+                        ]);
+                    }
+                catch(S3Exception $e)
+                    {
+                        echo $e;
+                    }
+                $uploaded_images = $result['ObjectURL'] . PHP_EOL;
                   
                   
-                  $insertValuesSQL .= "('" .$targetFilePath2. "', NOW(), '" .  $local_id . "'),";
+                  $insertValuesSQL .= "('" .$uploaded_images. "', NOW(), '" .  $local_id . "'),";
                 }else{ 
                     $errorUpload .= $_FILES['files']['name'][$key].' | '; 
                     echo "eroare la width/height ".$errorUpload;}
