@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 // this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
 
 $acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
