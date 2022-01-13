@@ -235,8 +235,8 @@ if(isset($_POST['submit'])){
                     'region'  => 'eu-west-3',
                     'version' => 'latest',
                     'credentials' => [
-                        'key'    => "AKIAXXJPZAYXBG6N7JTW",
-                        'secret' => "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",
+                        'key'    => "key",
+                        'secret' => "secret",
                     ]
                 ]);		
                 try
