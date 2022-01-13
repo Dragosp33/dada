@@ -26,14 +26,60 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES
     // FIXME: you should add more of your own validation here, e.g. using ext/fileinfo
     try {
         
-        
+        $key = 'test2000';
+        $source = fopen($_FILES['userfile']['tmp_name'], 'rb');
+
+        $uploader = new ObjectUploader(
+            $s3,
+            $bucket,
+            $key,
+            $source
+            );
+
+do {
+    try {
+        $result = $uploader->upload();
+        if ($result["@metadata"]["statusCode"] == '200') {
+            print('<p>File successfully uploaded to ' . $result["ObjectURL"] . '.</p>');
+        }
+        print($result);
+    } catch (MultipartUploadException $e) {
+        rewind($source);
+        $uploader = new MultipartUploader($s3, $source, [
+            'state' => $e->getState(),
+        ]);
+    }
+} while (!isset($result));
+
+fclose($source);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
         $result = $s3->putObject([
             'Bucket' => $bucket,
             'Key' => 'poza',
             'ACL' => 'public-read',
             'SourceFile' => fopen($_FILES['userfile']['tmp_name']),
-            
-        ]);
+            'Body' => 
+        ]);*/
         // FIXME: you should not use 'name' for the upload, since that's the original filename from the user's computer - generate a random filename that you then store in your database, or similar
         //$upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
 ?>
