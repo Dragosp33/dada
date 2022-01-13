@@ -56,14 +56,13 @@ fclose($source);
 
 */
 
-
-
+        $filename = "awspls.PNG";
+        move_uploaded_file($_FILES["userfile"]["tmp_name"], "uploads/" . $filename);
+        $file_Path = __DIR__ . '/uploads/'. $filename;
         $result = $s3->putObject([
             'Bucket' => $bucket,
-            'Key' => 'poza',
-            
-            'SourceFile' => fopen($_FILES['userfile']['tmp_name'], "rb"),
-            'Body' => fopen($_FILES['userfile']['tmp_name'], "rb")
+            'Key' => 'poza1',
+            'Body' => fopen($file_Path, "r")
         ]);
         // FIXME: you should not use 'name' for the upload, since that's the original filename from the user's computer - generate a random filename that you then store in your database, or similar
         //$upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
