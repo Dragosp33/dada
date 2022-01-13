@@ -103,7 +103,7 @@ $('body').on('click', ".thumb", function (e){
   <link rel="stylesheet" href="upload.css">
 </head>
 <body>
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<form enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>" method="POST">
   <div>
   <input type="text" name="local" id="local" placeholder="Cum se numeste localul?">
   </div>
@@ -246,7 +246,7 @@ if(isset($_POST['submit'])){
                         'Key'    => $s3_key,
                         'SourceFile' => $targetFilePath2,
                         'ACL'    => 'public-read',
-                        'ContentType' => '$s3_file'		
+                        'ContentType' => $s3_file		
                         ]);
                     }
                 catch(S3Exception $e)
@@ -254,7 +254,7 @@ if(isset($_POST['submit'])){
                         echo $e;
                     }
                 $uploaded_images = $result['ObjectURL'] . PHP_EOL;
-                  
+                echo $uploaded_images;  
                   
                   $insertValuesSQL .= "('" .$uploaded_images. "', NOW(), '" .  $local_id . "'),";
                 }else{ 
@@ -270,7 +270,7 @@ if(isset($_POST['submit'])){
             } 
             //unlink($targetFilePath);
         } 
-            $sql = "UPDATE rss_info SET thumbnail=? WHERE ID=?";
+      /*      $sql = "UPDATE rss_info SET thumbnail=? WHERE ID=?";
              
             if($stmt = mysqli_prepare($conn, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -288,7 +288,7 @@ if(isset($_POST['submit'])){
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);}
 
-         
+         */
         // Error message 
         $errorUpload = !empty($errorUpload)?'Upload Error: '.trim($errorUpload, ' | '):''; 
         $errorUploadType = !empty($errorUploadType)?'File Type Error: '.trim($errorUploadType, ' | '):''; 
