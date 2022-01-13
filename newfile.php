@@ -1,14 +1,15 @@
 <?php
 require 'vendor/autoload.php';
 // this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
-$s3 = new Aws\S3\S3Client([
+/*$s3 = new Aws\S3\S3Client([
     'version'  => '2012-10-17',
     'region'   => 'eu-west-3',
 ]);
 $bucket = getenv('S3_BUCKET');
 $acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
-echo $bucket . " " . $acceskey . " " . $secret;
-echo "salut";
+echo $bucket . " " . $acceskey . " " . $secret;*/
+echo "salut sall";
+
 /*?>
 
 <html>
