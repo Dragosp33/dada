@@ -3,7 +3,7 @@ require_once "Includes/connect.php";
 Include_once "Includes/header.php";
 require_once __DIR__ . '/vendor/autoload.php';
 // this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
-
+$url = 'https://heroevent.s3.eu-west-3.amazonaws.com/';
 $acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
 $s3 = new Aws\S3\S3Client([
     'version'  => '2006-03-01',
@@ -246,16 +246,13 @@ if(isset($_POST['submit'])){
                     'Key' => $s3_key,
                     'Body' => fopen($targetFilePath2, "r")
                   ]);
-                  $result = $s3->getObject([
-                    'Bucket' => $bucket,
-                    'Key' => $s3_key
-                  ]);
-                  $url = $result['ObjectURL'];
+                  
+                  $url2 = $url . $s3_key;
                   $image->destroy();
 
                   
                   
-                  $insertValuesSQL .= "('" .$url. "', NOW(), '" .  $local_id . "'),";
+                  $insertValuesSQL .= "('" .$url2. "', NOW(), '" .  $local_id . "'),";
                 }else{ 
                     $errorUpload .= $_FILES['files']['name'][$key].' | '; 
                     echo "eroare la width/height ".$errorUpload;}

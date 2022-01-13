@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 // this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
+$url = 'https://heroevent.s3.eu-west-3.amazonaws.com/';
 
 $acceskey = getenv('AWS_ACCESS_KEY_ID'); $secret = getenv('AWS_SECRET_ACCESS_KEY');
 $s3 = new Aws\S3\S3Client([
@@ -56,19 +57,17 @@ fclose($source);
 
 */
 
-        $filename = "aws3pls.PNG";
+        $filename = "aws4pls.PNG";
         move_uploaded_file($_FILES["userfile"]["tmp_name"], "uploads/" . $filename);
         $file_Path = __DIR__ . '/uploads/'. $filename;
         $result = $s3->putObject([
             'Bucket' => $bucket,
-            'Key' => 'poza2',
+            'Key' => 'poza4',
             'Body' => fopen($file_Path, "r")
         ]);
-        $result = $s3->getObject([
-            'Bucket' => $bucket,
-            'Key' => 'poza2'
-        ]);
-        echo $result['ObjectURL'];
+        
+        echo $url . 'poza4';
+        
         // FIXME: you should not use 'name' for the upload, since that's the original filename from the user's computer - generate a random filename that you then store in your database, or similar
         //$upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
 ?>
