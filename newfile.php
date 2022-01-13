@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES
         <h2>Upload a file</h2>
         <form enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>" method="POST">
             <input name="userfile" type="file"><input type="submit" value="Upload">
-            <button type="submit" name="submit">submit</button>
+            
         </form>
     </body>
 </html>
