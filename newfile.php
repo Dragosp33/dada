@@ -12,7 +12,7 @@ $s3 = new Aws\S3\S3Client([
     ]
 ]);
 $bucket = getenv('S3_BUCKET');
-
+/*
 ?>
 
 
@@ -38,4 +38,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES
             
         </form>
     </body>
-</html>
+</html>*/
+$result = $s3->putObject([
+    'Bucket' => $bucket,
+    'Key' => 'cheie',
+    'Body' => 'this is the body!'
+]);
+$result = $s3->getObject([
+    'Bucket' => $bucket,
+    'Key' => 'cheie'
+]);
+echo $result['Body'];
