@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES
         // FIXME: you should not use 'name' for the upload, since that's the original filename from the user's computer - generate a random filename that you then store in your database, or similar
         //$upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
 ?>
-        <p>Upload <a href="<?=htmlspecialchars($upload->get('ObjectURL'))?>">successful</a> :)</p>
+        <p>Upload successful> :)</p>
 <?php } catch(Exception $e) { ?>
         <p>Upload error :(</p>
 <?php } } ?>
@@ -61,5 +61,6 @@ $result = $s3->getObject([
     'Bucket' => $bucket,
     'Key' => 'poza'
 ]);
+<a href="<?=htmlspecialchars($result->get('ObjectURL'))?>">
 echo $result['KE'];*/
 ?>
