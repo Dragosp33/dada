@@ -266,7 +266,7 @@ if(isset($_POST['submit'])){
             } 
             //unlink($targetFilePath);
         } 
-      /*      $sql = "UPDATE rss_info SET thumbnail=? WHERE ID=?";
+            $sql = "UPDATE rss_info SET thumbnail=? WHERE ID=?";
              
             if($stmt = mysqli_prepare($conn, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -284,7 +284,7 @@ if(isset($_POST['submit'])){
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);}
 
-         */
+         
         // Error message 
         $errorUpload = !empty($errorUpload)?'Upload Error: '.trim($errorUpload, ' | '):''; 
         $errorUploadType = !empty($errorUploadType)?'File Type Error: '.trim($errorUploadType, ' | '):''; 
@@ -294,18 +294,18 @@ if(isset($_POST['submit'])){
           $insertValuesSQL = trim($insertValuesSQL, ",");
           echo $insertValuesSQL;
           
-           // $insertValuesSQL = trim($insertValuesSQL, ','); 
+           
             // Insert image file name into database 
-           // $insert = $db2->query("INSERT INTO images (filepath, data_add, rss_id) VALUES $insertValuesSQL"); 
+            $insert = $cleardb_db->query("INSERT INTO images (filepath, data_add, rss_id) VALUES $insertValuesSQL"); 
            
             
             
-           /* if($insert){ 
+            if($insert){ 
                 $statusMsg = "Files are uploaded successfully.".$errorMsg; 
             }else{ 
                 $statusMsg = "Sorry, there was an error uploading your file.";  
                 echo $statusMsg;
-            }*/
+            }
 
         }else{ 
             $statusMsg = "Upload failed! ".$errorMsg; 
