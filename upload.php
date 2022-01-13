@@ -296,7 +296,7 @@ if(isset($_POST['submit'])){
           
            
             // Insert image file name into database 
-            $insert = $cleardb_db->query("INSERT INTO images (filepath, data_add, rss_id) VALUES $insertValuesSQL"); 
+            $insert = $db2->query("INSERT INTO images (filepath, data_add, rss_id) VALUES $insertValuesSQL"); 
            
             
             
